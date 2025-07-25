@@ -33,7 +33,7 @@
   <FormSettings>
     <Form xsi:type="ItemRead">
       <DesktopSettings>
-        <SourceLocation DefaultValue="https://codepen.io/rdyy89/pen/JoYRdvO"/>
+        <SourceLocation DefaultValue="https://cdpn.io/pen/debug/JoYRdvO?authentication_hash=vPrKKWbQOLDr"/>
         <RequestedHeight>350</RequestedHeight>
       </DesktopSettings>
     </Form>
@@ -91,7 +91,7 @@
         <bt:Image id="Icon.80x80" DefaultValue="https://via.placeholder.com/80x80/0078d4/ffffff?text=✓"/>
       </bt:Images>
       <bt:Urls>
-        <bt:Url id="Taskpane.Url" DefaultValue="https://codepen.io/rdyy89/pen/JoYRdvO"/>
+        <bt:Url id="Taskpane.Url" DefaultValue="https://cdpn.io/pen/debug/JoYRdvO?authentication_hash=vPrKKWbQOLDr"/>
       </bt:Urls>
       <bt:ShortStrings>
         <bt:String id="GroupLabel" DefaultValue="Email Auth"/>
