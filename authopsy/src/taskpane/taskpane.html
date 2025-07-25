@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Email Authentication Checker</title>
+
+    <!-- Office JavaScript API -->
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
+
+    <!-- Local CSS and JS -->
+    <link rel="stylesheet" href="taskpane.css" />
+</head>
+
+<body class="ms-font-m ms-welcome ms-Fabric">
+    <header class="ms-welcome__header ms-bgColor-neutralLighter">
+        <img width="90" height="90" src="../assets/logo-filled.png" alt="Email Auth Checker" title="Email Auth Checker" />
+        <h1 class="ms-font-su">Email Authentication Checker</h1>
+    </header>
+    
+    <main id="app-body" class="ms-welcome__main">
+        <section class="ms-welcome__features">
+            <div class="email-info">
+                <h2 class="ms-font-l">Current Email</h2>
+                <div id="email-subject" class="email-subject">Loading...</div>
+                <div id="email-from" class="email-from">Loading...</div>
+            </div>
+            
+            <div class="auth-results">
+                <h2 class="ms-font-l">Authentication Results</h2>
+                
+                <div class="auth-check" id="spf-check">
+                    <div class="auth-label">SPF (Sender Policy Framework)</div>
+                    <div class="auth-status" id="spf-status">
+                        <span class="status-icon" id="spf-icon">⏳</span>
+                        <span class="status-text" id="spf-text">Checking...</span>
+                    </div>
+                    <div class="auth-details" id="spf-details"></div>
+                </div>
+                
+                <div class="auth-check" id="dkim-check">
+                    <div class="auth-label">DKIM (DomainKeys Identified Mail)</div>
+                    <div class="auth-status" id="dkim-status">
+                        <span class="status-icon" id="dkim-icon">⏳</span>
+                        <span class="status-text" id="dkim-text">Checking...</span>
+                    </div>
+                    <div class="auth-details" id="dkim-details"></div>
+                </div>
+                
+                <div class="auth-check" id="dmarc-check">
+                    <div class="auth-label">DMARC (Domain-based Message Authentication)</div>
+                    <div class="auth-status" id="dmarc-status">
+                        <span class="status-icon" id="dmarc-icon">⏳</span>
+                        <span class="status-text" id="dmarc-text">Checking...</span>
+                    </div>
+                    <div class="auth-details" id="dmarc-details"></div>
+                </div>
+            </div>
+            
+            <div class="overall-score">
+                <h3 class="ms-font-l">Overall Security Score</h3>
+                <div id="security-score" class="score-display">
+                    <span class="score-number" id="score-number">-</span>
+                    <span class="score-total">/100</span>
+                </div>
+                <div id="security-recommendation" class="recommendation"></div>
+            </div>
+            
+            <button class="ms-Button ms-Button--primary" id="refresh-button">
+                <span class="ms-Button-label">Refresh Check</span>
+            </button>
+        </section>
+    </main>
+
+    <script type="text/javascript" src="taskpane.js"></script>
+</body>
+</html>

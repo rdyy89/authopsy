@@ -1,0 +1,269 @@
+/* Office UI Fabric Core Styles */
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #ffffff;
+}
+
+.ms-welcome {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.ms-welcome__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f3f2f1;
+    border-bottom: 1px solid #edebe9;
+}
+
+.ms-welcome__header img {
+    margin-bottom: 10px;
+}
+
+.ms-welcome__header h1 {
+    margin: 0;
+    color: #323130;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.ms-welcome__main {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.ms-welcome__features {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Email Information Styles */
+.email-info {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid #e1e5e9;
+}
+
+.email-subject {
+    font-weight: 600;
+    color: #323130;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.email-from {
+    color: #605e5c;
+    font-size: 14px;
+}
+
+/* Authentication Results Styles */
+.auth-results {
+    background-color: #ffffff;
+    border: 1px solid #e1e5e9;
+    border-radius: 6px;
+    padding: 20px;
+}
+
+.auth-results h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #323130;
+    font-weight: 600;
+}
+
+.auth-check {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 4px;
+    border: 1px solid #edebe9;
+    background-color: #faf9f8;
+}
+
+.auth-check:last-child {
+    margin-bottom: 0;
+}
+
+.auth-label {
+    font-weight: 600;
+    color: #323130;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.auth-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.status-icon {
+    font-size: 18px;
+    width: 20px;
+    text-align: center;
+}
+
+.status-text {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.auth-details {
+    font-size: 12px;
+    color: #605e5c;
+    margin-top: 5px;
+    line-height: 1.4;
+}
+
+/* Status Colors */
+.status-pass {
+    color: #107c10;
+}
+
+.status-fail {
+    color: #d13438;
+}
+
+.status-warning {
+    color: #ff8c00;
+}
+
+.status-checking {
+    color: #0078d4;
+}
+
+/* Overall Score Styles */
+.overall-score {
+    background-color: #f3f2f1;
+    padding: 20px;
+    border-radius: 6px;
+    text-align: center;
+    border: 1px solid #e1e5e9;
+}
+
+.overall-score h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #323130;
+}
+
+.score-display {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.score-number {
+    color: #0078d4;
+}
+
+.score-total {
+    color: #605e5c;
+    font-size: 24px;
+}
+
+.recommendation {
+    font-size: 14px;
+    color: #605e5c;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+/* Button Styles */
+.ms-Button {
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    padding: 10px 20px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: 400;
+    min-width: 80px;
+    background-color: transparent;
+    color: #323130;
+    outline: none;
+    user-select: none;
+}
+
+.ms-Button--primary {
+    background-color: #0078d4;
+    border-color: #0078d4;
+    color: #ffffff;
+}
+
+.ms-Button--primary:hover {
+    background-color: #106ebe;
+    border-color: #106ebe;
+}
+
+.ms-Button--primary:active {
+    background-color: #005a9e;
+    border-color: #005a9e;
+}
+
+.ms-Button-label {
+    display: block;
+    font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 400px) {
+    .ms-welcome__header {
+        padding: 15px;
+    }
+    
+    .ms-welcome__main {
+        padding: 15px;
+    }
+    
+    .score-display {
+        font-size: 36px;
+    }
+    
+    .auth-check {
+        padding: 12px;
+    }
+}
+
+/* Loading Animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.status-checking .status-icon {
+    animation: spin 1s linear infinite;
+}
+
+/* Utility Classes */
+.ms-font-su {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.ms-font-l {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.ms-font-m {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.ms-bgColor-neutralLighter {
+    background-color: #f3f2f1;
+}
