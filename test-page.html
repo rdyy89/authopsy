@@ -11,6 +11,7 @@
         .fail { background-color: #f8d7da; color: #721c24; }
         .unknown { background-color: #fff3cd; color: #856404; }
         .score { font-size: 18px; font-weight: bold; margin: 10px 0; }
+        .demo { background-color: #e3f2fd; color: #0d47a1; }
     </style>
 </head>
 <body>
@@ -20,11 +21,40 @@
     </div>
     
     <script>
+        let isOfficeContext = false;
+        
+        // Set a timeout to show demo content if Office.js doesn't load
+        setTimeout(function() {
+            if (!isOfficeContext) {
+                showDemoContent();
+            }
+        }, 3000);
+        
         Office.onReady(function(info) {
+            isOfficeContext = true;
             if (info.host === Office.HostType.Outlook) {
                 checkAuthentication();
+            } else {
+                showDemoContent();
             }
         });
+        
+        function showDemoContent() {
+            document.getElementById('results').innerHTML = `
+                <div class="status demo">Demo Mode - This add-in will show real authentication results when installed in Outlook</div>
+                <div class="score">Sample Security Score: 65/100</div>
+                <div class="status fail">SPF: FAIL - Sender IP not authorized</div>
+                <div class="status pass">DKIM: PASS - Valid signature</div>
+                <div class="status unknown">DMARC: Unknown - No policy found</div>
+                <p><strong>How it works:</strong></p>
+                <ul>
+                    <li>Install this add-in in Outlook Web, New Outlook, or Outlook Classic</li>
+                    <li>Open any email message</li>
+                    <li>Click the "Check Authentication" button in the ribbon</li>
+                    <li>View real SPF, DKIM, and DMARC results for that email</li>
+                </ul>
+            `;
+        }
         
         function checkAuthentication() {
             try {
