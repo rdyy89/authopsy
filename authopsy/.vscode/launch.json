@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch Add-in (Edge)",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/node_modules/office-addin-debugging/lib/cli.js",
+            "args": ["start", "manifest.xml", "edge"],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "npm_config_cache": "${workspaceFolder}/.npm"
+            },
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Launch Add-in (Chrome)",
+            "type": "node", 
+            "request": "launch",
+            "program": "${workspaceFolder}/node_modules/office-addin-debugging/lib/cli.js",
+            "args": ["start", "manifest.xml", "chrome"],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "npm_config_cache": "${workspaceFolder}/.npm"
+            },
+            "console": "integratedTerminal"
+        }
+    ]
+}
