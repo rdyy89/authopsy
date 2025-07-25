@@ -1,0 +1,54 @@
+{
+  "name": "email-auth-checker",
+  "version": "1.0.0",
+  "description": "Outlook add-in to check SPF, DKIM, and DMARC authentication for emails",
+  "main": "src/taskpane/taskpane.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "build:dev": "webpack --mode development",
+    "dev-server": "webpack serve --mode development",
+    "start": "office-addin-debugging start manifest.xml",
+    "stop": "office-addin-debugging stop manifest.xml",
+    "validate": "office-addin-manifest validate manifest.xml",
+    "sideload": "office-addin-dev-settings sideload manifest.xml"
+  },
+  "keywords": [
+    "Office Add-in",
+    "Outlook",
+    "SPF",
+    "DKIM",
+    "DMARC",
+    "Email Authentication"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "core-js": "^3.36.0",
+    "regenerator-runtime": "^0.14.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.0",
+    "@babel/preset-env": "^7.24.0",
+    "@babel/preset-typescript": "^7.24.0",
+    "babel-loader": "^9.1.3",
+    "copy-webpack-plugin": "^12.0.2",
+    "css-loader": "^6.10.0",
+    "file-loader": "^6.2.0",
+    "html-loader": "^5.0.0",
+    "html-webpack-plugin": "^5.6.0",
+    "office-addin-cli": "^1.6.3",
+    "office-addin-debugging": "^5.1.3",
+    "office-addin-dev-certs": "^1.13.3",
+    "office-addin-lint": "^2.3.3",
+    "office-addin-manifest": "^1.13.3",
+    "office-addin-prettier-config": "^1.2.1",
+    "source-map-loader": "^5.0.0",
+    "style-loader": "^3.3.4",
+    "webpack": "^5.90.3",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.2"
+  },
+  "browserslist": [
+    "ie 11"
+  ]
+}

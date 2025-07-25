@@ -1,0 +1,6 @@
+<!-- This is a placeholder SVG icon. Replace with actual icon files -->
+<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+  <rect width="80" height="80" fill="#0078d4" rx="10"/>
+  <circle cx="40" cy="40" r="30" fill="white"/>
+  <path d="M25 40 L35 50 L55 30" stroke="#0078d4" stroke-width="4" fill="none" stroke-linecap="round"/>
+</svg>
