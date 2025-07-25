@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Email Authentication Checker</title>
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 10px; }
+        .status { padding: 10px; margin: 5px 0; border-radius: 4px; }
+        .pass { background-color: #d4edda; color: #155724; }
+        .fail { background-color: #f8d7da; color: #721c24; }
+        .unknown { background-color: #fff3cd; color: #856404; }
+        .score { font-size: 18px; font-weight: bold; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h2>Email Authentication Status</h2>
+    <div id="results">
+        <div class="status unknown">Loading email headers...</div>
+    </div>
+    
+    <script>
+        Office.onReady(function(info) {
+            if (info.host === Office.HostType.Outlook) {
+                checkAuthentication();
+            }
+        });
+        
+        function checkAuthentication() {
+            try {
+                Office.context.mailbox.item.getAllInternetHeadersAsync(function(result) {
+                    if (result.status === Office.AsyncResultStatus.Succeeded) {
+                        const headers = result.value;
+                        analyzeHeaders(headers);
+                    } else {
+                        document.getElementById('results').innerHTML = 
+                            '<div class="status fail">Could not access email headers</div>';
+                    }
+                });
+            } catch (error) {
+                document.getElementById('results').innerHTML = 
+                    '<div class="status fail">Error: ' + error.message + '</div>';
+            }
+        }
+        
+        function analyzeHeaders(headers) {
+            const spf = checkSPF(headers);
+            const dkim = checkDKIM(headers);
+            const dmarc = checkDMARC(headers);
+            
+            const score = calculateScore(spf, dkim, dmarc);
+            
+            document.getElementById('results').innerHTML = `
+                <div class="score">Security Score: ${score}/100</div>
+                <div class="status ${spf.status}">${spf.message}</div>
+                <div class="status ${dkim.status}">${dkim.message}</div>
+                <div class="status ${dmarc.status}">${dmarc.message}</div>
+            `;
+        }
+        
+        function checkSPF(headers) {
+            if (headers.includes('spf=pass')) return {status: 'pass', message: 'SPF: PASS'};
+            if (headers.includes('spf=fail')) return {status: 'fail', message: 'SPF: FAIL'};
+            return {status: 'unknown', message: 'SPF: Unknown'};
+        }
+        
+        function checkDKIM(headers) {
+            if (headers.includes('dkim=pass')) return {status: 'pass', message: 'DKIM: PASS'};
+            if (headers.includes('dkim=fail')) return {status: 'fail', message: 'DKIM: FAIL'};
+            return {status: 'unknown', message: 'DKIM: Unknown'};
+        }
+        
+        function checkDMARC(headers) {
+            if (headers.includes('dmarc=pass')) return {status: 'pass', message: 'DMARC: PASS'};
+            if (headers.includes('dmarc=fail')) return {status: 'fail', message: 'DMARC: FAIL'};
+            return {status: 'unknown', message: 'DMARC: Unknown'};
+        }
+        
+        function calculateScore(spf, dkim, dmarc) {
+            let score = 0;
+            if (spf.status === 'pass') score += 30;
+            if (dkim.status === 'pass') score += 35;
+            if (dmarc.status === 'pass') score += 35;
+            return score;
+        }
+    </script>
+</body>
+</html>

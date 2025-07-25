@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:type="MailApp">
+  
+  <Id>77777777-6666-5555-4444-333333333333</Id>
+  <Version>1.0.4.0</Version>
+  <ProviderName>AuthChecker</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  
+  <DisplayName DefaultValue="Auth Checker"/>
+  <Description DefaultValue="Email authentication checker"/>
+  <IconUrl DefaultValue="https://via.placeholder.com/32x32/green/white?text=A"/>
+  <HighResolutionIconUrl DefaultValue="https://via.placeholder.com/64x64/green/white?text=A"/>
+  <SupportUrl DefaultValue="https://cdpn.io"/>
+  
+  <AppDomains>
+    <AppDomain>https://cdpn.io</AppDomain>
+  </AppDomains>
+  
+  <Hosts>
+    <Host Name="Mailbox"/>
+  </Hosts>
+  
+  <Requirements>
+    <Sets>
+      <Set Name="Mailbox" MinVersion="1.1"/>
+    </Sets>
+  </Requirements>
+  
+  <FormSettings>
+    <Form xsi:type="ItemRead">
+      <DesktopSettings>
+        <SourceLocation DefaultValue="https://cdpn.io/pen/debug/JoYRdvO"/>
+        <RequestedHeight>300</RequestedHeight>
+      </DesktopSettings>
+      <TabletSettings>
+        <SourceLocation DefaultValue="https://cdpn.io/pen/debug/JoYRdvO"/>
+        <RequestedHeight>300</RequestedHeight>
+      </TabletSettings>
+      <PhoneSettings>
+        <SourceLocation DefaultValue="https://cdpn.io/pen/debug/JoYRdvO"/>
+      </PhoneSettings>
+    </Form>
+  </FormSettings>
+  
+  <Permissions>ReadWriteItem</Permissions>
+  
+  <Rule xsi:type="RuleCollection" Mode="Or">
+    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read"/>
+  </Rule>
+  
+</OfficeApp>
