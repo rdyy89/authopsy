@@ -12,10 +12,10 @@
   <Description DefaultValue="Check email authentication"/>
   <IconUrl DefaultValue="https://via.placeholder.com/32x32/orange/white?text=A"/>
   <HighResolutionIconUrl DefaultValue="https://via.placeholder.com/64x64/orange/white?text=A"/>
-  <SupportUrl DefaultValue="https://cdpn.io"/>
+  <SupportUrl DefaultValue="https://rdyy89.github.io/authopsy/"/>
   
   <AppDomains>
-    <AppDomain>https://cdpn.io</AppDomain>
+    <AppDomain>https://rdyy89.github.io</AppDomain>
   </AppDomains>
   
   <Hosts>
@@ -31,13 +31,13 @@
   <FormSettings>
     <Form xsi:type="ItemRead">
       <DesktopSettings>
-        <SourceLocation DefaultValue="https://cdpn.io/pen/debug/JoYRdvO"/>
+        <SourceLocation DefaultValue="https://rdyy89.github.io/authopsy/"/>
         <RequestedHeight>500</RequestedHeight>
       </DesktopSettings>
     </Form>
     <Form xsi:type="ItemEdit">
       <DesktopSettings>
-        <SourceLocation DefaultValue="https://cdpn.io/pen/debug/JoYRdvO"/>
+        <SourceLocation DefaultValue="https://rdyy89.github.io/authopsy/"/>
         <RequestedHeight>500</RequestedHeight>
       </DesktopSettings>
     </Form>
