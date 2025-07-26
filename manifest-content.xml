@@ -17,7 +17,7 @@
   </Hosts>
   <Requirements>
     <Sets>
-      <Set Name="Mailbox" MinVersion="1.10"/>
+      <Set Name="Mailbox" MinVersion="1.7"/>
     </Sets>
   </Requirements>
   <Permissions>ReadItem</Permissions>
@@ -26,7 +26,7 @@
   </Rule>
   <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" xsi:type="VersionOverridesV1_0">
     <Requirements>
-      <bt:Sets DefaultMinVersion="1.10">
+      <bt:Sets DefaultMinVersion="1.7">
         <bt:Set Name="Mailbox"/>
       </bt:Sets>
     </Requirements>
@@ -34,33 +34,31 @@
       <Host xsi:type="MailHost">
         <DesktopFormFactor>
           <FunctionFile resid="FunctionFile.Url"/>
-          <ExtensionPoint xsi:type="LaunchEvent">
-            <LaunchEvents>
-              <LaunchEvent Type="OnMessageRead" FunctionName="onMessageRead"/>
-            </LaunchEvents>
-            <SourceLocation resid="FunctionFile.Url"/>
-          </ExtensionPoint>
-          <ExtensionPoint xsi:type="MessageReadCommandSurface">
-            <OfficeTab id="TabDefault">
-              <Group id="msgReadGroup">
-                <Label resid="GroupLabel"/>
-                <Control xsi:type="Button" id="msgReadOpenPaneButton">
-                  <Label resid="TaskpaneButton.Label"/>
-                  <Supertip>
-                    <Title resid="TaskpaneButton.Label"/>
-                    <Description resid="TaskpaneButton.Tooltip"/>
-                  </Supertip>
-                  <Icon>
-                    <bt:Image size="16" resid="Icon.16x16"/>
-                    <bt:Image size="32" resid="Icon.32x32"/>
-                    <bt:Image size="80" resid="Icon.80x80"/>
-                  </Icon>
-                  <Action xsi:type="ShowTaskpane">
-                    <SourceLocation resid="Taskpane.Url"/>
-                  </Action>
-                </Control>
-              </Group>
-            </OfficeTab>
+          <ExtensionPoint xsi:type="Module" xsi:nil="false">
+            <SourceLocation resid="Taskpane.Url"/>
+            <Label resid="ModuleLabel"/>
+            <CommandSurface>
+              <CustomTab id="AuthTab">
+                <Group id="AuthGroup">
+                  <Label resid="GroupLabel"/>
+                  <Control xsi:type="Button" id="ShowAuthButton">
+                    <Label resid="TaskpaneButton.Label"/>
+                    <Supertip>
+                      <Title resid="TaskpaneButton.Label"/>
+                      <Description resid="TaskpaneButton.Tooltip"/>
+                    </Supertip>
+                    <Icon>
+                      <bt:Image size="16" resid="Icon.16x16"/>
+                      <bt:Image size="32" resid="Icon.32x32"/>
+                      <bt:Image size="80" resid="Icon.80x80"/>
+                    </Icon>
+                    <Action xsi:type="ShowTaskpane">
+                      <SourceLocation resid="Taskpane.Url"/>
+                    </Action>
+                  </Control>
+                </Group>
+              </CustomTab>
+            </CommandSurface>
           </ExtensionPoint>
         </DesktopFormFactor>
       </Host>
@@ -76,11 +74,12 @@
         <bt:Url id="Taskpane.Url" DefaultValue="https://rdyy89.github.io/authopsy/src/taskpane/taskpane.html"/>
       </bt:Urls>
       <bt:ShortStrings>
-        <bt:String id="GroupLabel" DefaultValue="Security"/>
-        <bt:String id="TaskpaneButton.Label" DefaultValue="✓ Auth Check"/>
+        <bt:String id="ModuleLabel" DefaultValue="Email Security"/>
+        <bt:String id="GroupLabel" DefaultValue="Authentication"/>
+        <bt:String id="TaskpaneButton.Label" DefaultValue="Check Auth"/>
       </bt:ShortStrings>
       <bt:LongStrings>
-        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Check DMARC, DKIM, and SPF authentication - click to see results"/>
+        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Check DMARC, DKIM, and SPF authentication"/>
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>
