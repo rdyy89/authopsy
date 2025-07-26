@@ -2,22 +2,51 @@
     padding: 15px;
 }
 
-#dmarc, #dkim, #spf {
+.auth-item {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #edebe9;
+    border-radius: 4px;
+    background-color: #faf9f8;
 }
 
 .icon {
     width: 20px;
     height: 20px;
     margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.label {
+    font-weight: 600;
+    min-width: 60px;
+    margin-right: 10px;
+}
+
+.description {
+    font-size: 12px;
+    color: #605e5c;
+    flex-grow: 1;
 }
 
 .icon.pass {
-    content: url('https://raw.githubusercontent.com/rdyy89/authopsy/main/authopsy-addin/assets/tick.png');
+    content: url('https://raw.githubusercontent.com/rdyy89/authopsy/main/assets/tick.png');
 }
 
 .icon.fail {
-    content: url('https://raw.githubusercontent.com/rdyy89/authopsy/main/authopsy-addin/assets/cross.png');
+    content: url('https://raw.githubusercontent.com/rdyy89/authopsy/main/assets/cross.png');
+}
+
+/* Loading state */
+.loading .icon {
+    background-color: #f3f2f1;
+    border-radius: 50%;
+}
+
+/* Hover effects */
+.auth-item:hover {
+    background-color: #f3f2f1;
+    border-color: #d2d0ce;
 }

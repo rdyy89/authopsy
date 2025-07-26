@@ -14,22 +14,33 @@
             <div class="ms-Grid-row">
                 <div class="ms-Grid-col ms-sm6 ms-md8 ms-lg10">
                     <h2 class="ms-font-xl">Authentication Results</h2>
+                    <p class="ms-fontSize-s ms-fontColor-neutralSecondary">Email security authentication status</p>
                 </div>
             </div>
             <div class="ms-Grid-row">
                 <div class="ms-Grid-col ms-sm6 ms-md8 ms-lg10">
-                    <div id="dmarc">
+                    <div id="dmarc" class="auth-item">
                         <span class="icon"></span>
                         <span class="label">DMARC</span>
+                        <span class="description">Domain-based Message Authentication</span>
                     </div>
-                    <div id="dkim">
+                    <div id="dkim" class="auth-item">
                         <span class="icon"></span>
                         <span class="label">DKIM</span>
+                        <span class="description">DomainKeys Identified Mail</span>
                     </div>
-                    <div id="spf">
+                    <div id="spf" class="auth-item">
                         <span class="icon"></span>
                         <span class="label">SPF</span>
+                        <span class="description">Sender Policy Framework</span>
                     </div>
+                </div>
+            </div>
+            <div class="ms-Grid-row">
+                <div class="ms-Grid-col ms-sm6 ms-md8 ms-lg10">
+                    <p class="ms-fontSize-xs ms-fontColor-neutralTertiary">
+                        Authentication results are parsed from email headers
+                    </p>
                 </div>
             </div>
         </div>
