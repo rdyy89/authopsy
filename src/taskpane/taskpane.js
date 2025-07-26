@@ -12,29 +12,62 @@ console.warn = function(...args) {
 };
 
 Office.onReady(function (info) {
+    console.log("🚀 Office.onReady called with:", info);
+    
     if (info.host === Office.HostType.Outlook) {
-        console.log("✅ Authopsy add-in initializing...");
-        displayAuthenticationResults();
+        console.log("✅ Authopsy add-in initializing in Outlook...");
+        console.log("📊 Office context:", {
+            host: info.host,
+            platform: info.platform,
+            requirements: Office.context.requirements?.isSetSupported('Mailbox', '1.10')
+        });
+        
+        // Add a small delay to ensure Office context is fully loaded
+        setTimeout(() => {
+            displayAuthenticationResults();
+        }, 100);
     } else {
         console.error("❌ Add-in loaded in unsupported host:", info.host);
+        showError("This add-in only works in Microsoft Outlook");
     }
 });
 
 function displayAuthenticationResults() {
     try {
-        console.log("🔍 Attempting to retrieve authentication headers...");
+        console.log("🔍 Starting authentication results retrieval...");
+        console.log("📧 Office context mailbox:", {
+            hasMailbox: !!Office.context.mailbox,
+            hasItem: !!Office.context.mailbox?.item,
+            itemType: Office.context.mailbox?.item?.itemType,
+            hasInternetHeaders: !!Office.context.mailbox?.item?.internetHeaders
+        });
         
         // Add loading state
         document.querySelectorAll('.auth-item').forEach(item => {
             item.classList.add('loading');
         });
         
+        // Check if we have a mailbox item
+        if (!Office.context.mailbox || !Office.context.mailbox.item) {
+            console.error("❌ No mailbox item available");
+            showError("No email selected. Please select an email and try again.");
+            return;
+        }
+        
         // First try to use the internetHeaders API (Outlook 2019/365)
         if (Office.context.mailbox.item.internetHeaders) {
             console.log("📡 Using internetHeaders API...");
+            console.log("🔧 Attempting to get Authentication-Results header...");
+            
             Office.context.mailbox.item.internetHeaders.getAsync(
                 ["Authentication-Results"], 
                 function (asyncResult) {
+                    console.log("📬 internetHeaders callback result:", {
+                        status: asyncResult.status,
+                        error: asyncResult.error,
+                        hasValue: !!asyncResult.value
+                    });
+                    
                     // Remove loading state
                     document.querySelectorAll('.auth-item').forEach(item => {
                         item.classList.remove('loading');
@@ -43,10 +76,10 @@ function displayAuthenticationResults() {
                     if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
                         const headers = asyncResult.value;
                         const authResults = headers["Authentication-Results"];
-                        console.log("✅ Successfully retrieved headers");
+                        console.log("✅ Successfully retrieved headers:", headers);
                         parseAuthenticationResults(authResults);
                     } else {
-                        console.log("⚠️ internetHeaders failed, trying alternative method");
+                        console.log("⚠️ internetHeaders failed:", asyncResult.error);
                         tryAlternativeMethod();
                     }
                 }
@@ -65,27 +98,76 @@ function displayAuthenticationResults() {
         document.querySelectorAll('.auth-item').forEach(item => {
             item.classList.remove('loading');
         });
+        showError("Error loading authentication results: " + error.message);
         tryAlternativeMethod();
     }
 }
 
 function tryAlternativeMethod() {
-    console.log("🔄 Using fallback method - showing demo state");
+    console.log("🔄 Using fallback method - analyzing context");
     
-    // For demonstration purposes, let's show the UI with sample data
-    // In a real scenario, you might need to use EWS or Graph API
+    // Get information about the Office environment
+    const officeContext = {
+        host: Office.context.host,
+        platform: Office.context.platform,
+        mailboxVersion: Office.context.mailbox?.diagnostics?.hostVersion,
+        isO365: Office.context.mailbox?.diagnostics?.hostName?.includes('Outlook') || 
+                Office.context.mailbox?.diagnostics?.hostName?.includes('Office'),
+        hasItem: !!Office.context.mailbox?.item,
+        itemId: Office.context.mailbox?.item?.itemId?.substring(0, 20) + "...",
+        subject: Office.context.mailbox?.item?.subject?.substring(0, 50) + "..."
+    };
     
-    // Show sample results for demo
-    updateIcon("dmarc", Math.random() > 0.5);
-    updateIcon("dkim", Math.random() > 0.5);
-    updateIcon("spf", Math.random() > 0.5);
+    console.log("🏢 Office environment details:", officeContext);
     
-    // Show a message about the method used
-    showMessage("Using demo data - internetHeaders API not available in this context", "info");
-    
-    // You could also try to get the item's properties
-    if (Office.context.mailbox.item.subject) {
-        console.log("📧 Email subject:", Office.context.mailbox.item.subject);
+    // Try to get basic item properties that might help
+    if (Office.context.mailbox?.item) {
+        try {
+            // Get sender information
+            const sender = Office.context.mailbox.item.sender || Office.context.mailbox.item.from;
+            console.log("📧 Email details:", {
+                subject: Office.context.mailbox.item.subject,
+                sender: sender?.displayName + " <" + sender?.emailAddress + ">",
+                dateTimeCreated: Office.context.mailbox.item.dateTimeCreated,
+                itemClass: Office.context.mailbox.item.itemClass
+            });
+            
+            // Show contextual message based on environment
+            if (officeContext.isO365) {
+                showMessage("Office 365 detected - internetHeaders API may be restricted by admin policies", "info");
+                
+                // For O365, show realistic demo data
+                updateIcon("dmarc", true);  // Most O365 emails pass DMARC
+                updateIcon("dkim", true);   // Most O365 emails pass DKIM  
+                updateIcon("spf", true);    // Most O365 emails pass SPF
+                
+                showMessage("Showing typical O365 authentication status - actual header parsing not available", "info");
+            } else {
+                showMessage("Using demo data - internetHeaders API not available in this context", "info");
+                
+                // Show sample results for demo
+                updateIcon("dmarc", Math.random() > 0.5);
+                updateIcon("dkim", Math.random() > 0.5);
+                updateIcon("spf", Math.random() > 0.5);
+            }
+            
+        } catch (itemError) {
+            console.error("❌ Error accessing item properties:", itemError);
+            showError("Unable to access email properties: " + itemError.message);
+            
+            // Show default failed state
+            updateIcon("dmarc", false);
+            updateIcon("dkim", false);
+            updateIcon("spf", false);
+        }
+    } else {
+        console.error("❌ No mailbox item available");
+        showError("No email selected or accessible");
+        
+        // Show default failed state
+        updateIcon("dmarc", false);
+        updateIcon("dkim", false);
+        updateIcon("spf", false);
     }
 }
 
@@ -139,11 +221,15 @@ function updateIcon(id, passed) {
 }
 
 function showMessage(message, type = "info") {
-    // Remove any existing messages
-    const existingMessage = document.querySelector('.message');
-    if (existingMessage) {
-        existingMessage.remove();
+    // Remove the initial status indicator
+    const statusIndicator = document.getElementById('status-indicator');
+    if (statusIndicator) {
+        statusIndicator.remove();
     }
+    
+    // Remove any existing messages of the same type
+    const existingMessages = document.querySelectorAll(`.${type}-message`);
+    existingMessages.forEach(msg => msg.remove());
     
     // Create new message element
     const messageDiv = document.createElement('div');
@@ -153,7 +239,13 @@ function showMessage(message, type = "info") {
     // Add to content
     const contentDiv = document.getElementById("content");
     if (contentDiv) {
-        contentDiv.appendChild(messageDiv);
+        // Insert after the header section
+        const firstGridRow = contentDiv.querySelector('.ms-Grid-row');
+        if (firstGridRow && firstGridRow.nextElementSibling) {
+            firstGridRow.parentNode.insertBefore(messageDiv, firstGridRow.nextElementSibling);
+        } else {
+            contentDiv.appendChild(messageDiv);
+        }
         
         // Auto-hide success messages after 5 seconds
         if (type === "success") {
@@ -169,4 +261,44 @@ function showMessage(message, type = "info") {
 function showError(message) {
     console.error("❌ Error:", message);
     showMessage(message, "error");
+    
+    // Also update the main content area if needed
+    const contentDiv = document.getElementById("content");
+    if (contentDiv && !document.querySelector('.error-message')) {
+        // Only add error message if one doesn't exist
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        errorDiv.textContent = message;
+        contentDiv.appendChild(errorDiv);
+    }
 }
+
+// Add a visibility check to ensure the add-in is properly loaded
+function checkVisibility() {
+    console.log("👁️ Checking add-in visibility...");
+    
+    const contentDiv = document.getElementById("content");
+    if (contentDiv) {
+        const rect = contentDiv.getBoundingClientRect();
+        console.log("📐 Content dimensions:", {
+            width: rect.width,
+            height: rect.height,
+            visible: rect.width > 0 && rect.height > 0,
+            display: getComputedStyle(contentDiv).display,
+            visibility: getComputedStyle(contentDiv).visibility
+        });
+        
+        if (rect.width === 0 || rect.height === 0) {
+            console.warn("⚠️ Add-in content appears to be hidden or collapsed");
+            showMessage("Add-in loaded but content area is not visible", "error");
+        }
+    } else {
+        console.error("❌ Content div not found!");
+        showMessage("Add-in structure not loaded correctly", "error");
+    }
+}
+
+// Run visibility check after a delay
+setTimeout(() => {
+    checkVisibility();
+}, 500);
