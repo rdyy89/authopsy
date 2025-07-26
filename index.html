@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Email Auth Checker</title>
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+    <style>
+        body { font-family: Segoe UI; padding: 20px; background: #f5f5f5; }
+        .container { background: white; padding: 20px; border-radius: 8px; max-width: 400px; margin: 0 auto; }
+        .result { margin: 10px 0; padding: 10px; border-radius: 4px; }
+        .pass { background: #d4edda; border-left: 4px solid #28a745; }
+        .fail { background: #f8d7da; border-left: 4px solid #dc3545; }
+        .unknown { background: #fff3cd; border-left: 4px solid #ffc107; }
+        button { width: 100%; padding: 10px; background: #0078d4; color: white; border: none; border-radius: 4px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>📧 Email Authentication</h2>
+        <div id="content">Loading...</div>
+        <button onclick="checkAuth()">🔄 Check Again</button>
+    </div>
+    
+    <script>
+        Office.onReady(() => {
+            checkAuth();
+        });
+        
+        function checkAuth() {
+            const content = document.getElementById('content');
+            content.innerHTML = 'Checking authentication...';
+            
+            // Show demo results for now
+            setTimeout(() => {
+                content.innerHTML = `
+                    <div class="result pass">SPF: ✓ PASS</div>
+                    <div class="result pass">DKIM: ✓ PASS</div>
+                    <div class="result fail">DMARC: ✗ FAIL</div>
+                    <div style="text-align: center; margin-top: 15px; font-weight: bold;">Score: 67% - Needs Attention</div>
+                `;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
