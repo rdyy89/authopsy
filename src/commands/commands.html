@@ -4,21 +4,42 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        // Aggressive debug logging for commands.html loading
+        console.log("🔧 AUTHOPSY: Commands.html LOADING - " + new Date().toISOString());
+        alert("AUTHOPSY: Commands.html loaded!"); // Visible alert to confirm loading
+        
+        // Check if we're in an Office context
+        if (window.parent !== window) {
+            console.log("🔧 AUTHOPSY: Running in iframe context");
+        } else {
+            console.log("🔧 AUTHOPSY: Running in main window context");
+        }
+    </script>
     <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>
     <script>
-        // Debug logging for commands.html loading
-        console.log("Commands.html loaded");
+        // Debug logging after Office.js loads
+        console.log("🔧 AUTHOPSY: Office.js script tag processed");
         
         // Ensure Office.js is loaded before commands.js
         if (typeof Office !== 'undefined') {
-            console.log("Office.js is available");
+            console.log("🔧 AUTHOPSY: Office.js is available");
         } else {
-            console.error("Office.js not available");
+            console.log("🔧 AUTHOPSY: Office.js not yet available, will check in commands.js");
         }
     </script>
     <script src="commands.js" type="text/javascript"></script>
 </head>
 <body>
     <!-- Commands file loaded successfully -->
+    <div style="padding: 20px; font-family: Arial;">
+        <h3>Authopsy Commands Loaded</h3>
+        <p>If you see this page, the commands.html file is loading correctly.</p>
+        <p>Time: <span id="timestamp"></span></p>
+        <script>
+            document.getElementById('timestamp').textContent = new Date().toISOString();
+            console.log("🔧 AUTHOPSY: Commands.html body loaded");
+        </script>
+    </div>
 </body>
 </html>
