@@ -80,7 +80,7 @@
         <bt:Image id="Icon80" DefaultValue="https://rdyy89.github.io/authopsy/assets/icon-80.png"/>
       </bt:Images>
       <bt:Urls>
-        <bt:Url id="TaskpaneUrl" DefaultValue="https://rdyy89.github.io/authopsy/"/>
+        <bt:Url id="TaskpaneUrl" DefaultValue="https://rdyy89.github.io/authopsy/test-new.html"/>
       </bt:Urls>
       <bt:ShortStrings>
         <bt:String id="GroupLabel" DefaultValue="Email Security"/>
