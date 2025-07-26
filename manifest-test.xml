@@ -23,7 +23,7 @@
   <FormSettings>
     <Form xsi:type="ItemRead">
       <DesktopSettings>
-        <SourceLocation DefaultValue="https://rdyy89.github.io/authopsy/"/>
+        <SourceLocation DefaultValue="https://rdyy89.github.io/authopsy/debug.html"/>
         <RequestedHeight>200</RequestedHeight>
       </DesktopSettings>
     </Form>
