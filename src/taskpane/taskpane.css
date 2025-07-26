@@ -1,0 +1,208 @@
+/* Authopsy Task Pane Styles - Clean Version */
+
+#content {
+    padding: 15px;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica', sans-serif;
+}
+
+/* Inline mode styles for email view */
+.inline-mode {
+    background: #f8f9fa;
+    border-bottom: 1px solid #e1dfdd;
+}
+
+.inline-content {
+    padding: 8px 12px !important;
+    max-height: 60px;
+    overflow: hidden;
+}
+
+.auth-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.auth-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #323130;
+    margin-right: 8px;
+}
+
+.inline-status {
+    font-size: 11px;
+    color: #605e5c;
+    font-style: italic;
+}
+
+.auth-inline-row {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.auth-item-inline {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.label-inline {
+    font-size: 12px;
+    font-weight: 500;
+    color: #323130;
+    margin-left: 2px;
+}
+
+.icon-text {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 10px;
+    border-radius: 50%;
+    background-color: #e1dfdd;
+    color: #605e5c;
+    flex-shrink: 0;
+}
+
+.icon-text.pass {
+    background-color: #107c10;
+    color: white;
+}
+
+.icon-text.fail {
+    background-color: #d13438;
+    color: white;
+}
+
+.icon-text.loading {
+    background-color: #f3f2f1;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Original styles for taskpane mode (fallback) */
+.auth-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #edebe9;
+    border-radius: 4px;
+    background-color: #faf9f8;
+    transition: all 0.2s ease;
+}
+
+.auth-item:hover {
+    background-color: #f3f2f1;
+    border-color: #d2d0ce;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.auth-item.loading {
+    opacity: 0.6;
+}
+
+.label {
+    font-weight: 600;
+    min-width: 60px;
+    margin-right: 10px;
+    color: #323130;
+}
+
+.description {
+    font-size: 12px;
+    color: #605e5c;
+    flex-grow: 1;
+}
+
+/* Message styles */
+.error-message {
+    color: #d13438;
+    font-size: 14px;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #fdf3f4;
+    border: 1px solid #f1aeb5;
+    border-radius: 4px;
+    animation: slideIn 0.3s ease;
+}
+
+.success-message {
+    color: #107c10;
+    font-size: 14px;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f3f9f1;
+    border: 1px solid #9fd89f;
+    border-radius: 4px;
+    animation: slideIn 0.3s ease;
+}
+
+.info-message {
+    color: #0078d4;
+    font-size: 14px;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f3f8ff;
+    border: 1px solid #b3d6fc;
+    border-radius: 4px;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* High contrast and accessibility support */
+@media (forced-colors: active) {
+    .auth-item {
+        border: 1px solid ButtonText;
+        background-color: ButtonFace;
+    }
+    
+    .icon.pass {
+        background-color: GrayText;
+        color: ButtonFace;
+    }
+    
+    .icon.fail {
+        background-color: GrayText;
+        color: ButtonFace;
+    }
+    
+    .auth-item:hover {
+        background-color: Highlight;
+        color: HighlightText;
+        box-shadow: none;
+        transform: none;
+    }
+    
+    .inline-mode {
+        background: ButtonFace;
+        border-bottom: 1px solid ButtonText;
+    }
+}
