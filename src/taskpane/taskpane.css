@@ -1,62 +1,4 @@
-#content {
-    padding: 15px;
-}
-
-.auth-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #edebe9;
-    border-radius: 4px;
-    background-color: #faf9f8;
-}
-
-.icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-    flex-shrink: 0;
-}
-
-.label {
-    font-weight: 600;
-    min-width: 60px;
-    margin-right: 10px;
-}
-
-.description {
-    font-size: 12px;
-    color: #605e5c;
-    flex-grow: 1;
-}
-
-.icon.pass {
-    content: url('https://raw.githubusercontent.com/rdyy89/authopsy/main/assets/tick.png');
-}
-
-.icon.fail {
-    content: url('https://raw.githubusercontent.com/rdyy89/authopsy/main/assets/cross.png');
-}
-
-/* Loading state */
-.loading .icon {
-    background-color: #f3f2f1;
-    border-radius: 50%;
-}
-
-/* Modern CSS with forced colors support */
-@media (forced-colors: active) {
-    .auth-item {
-        border: 1px solid ButtonText;
-        background-color: ButtonFace;
-    }
-    
-    .icon.pass,
-    .icon.fail {
-        filter: none;
-    }
-}
+/* Authopsy Task Pane Styles - Clean Version */
 
 #content {
     padding: 15px;
@@ -74,6 +16,17 @@
     transition: all 0.2s ease;
 }
 
+.auth-item:hover {
+    background-color: #f3f2f1;
+    border-color: #d2d0ce;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.auth-item.loading {
+    opacity: 0.6;
+}
+
 .icon {
     width: 20px;
     height: 20px;
@@ -85,7 +38,7 @@
     justify-content: center;
     font-weight: bold;
     color: white;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .icon.pass {
@@ -119,9 +72,13 @@
 
 /* Loading state */
 .loading .icon {
-    background-color: #f3f2f1;
-    border-radius: 50%;
+    background-color: #f3f2f1 !important;
     animation: pulse 1.5s ease-in-out infinite;
+}
+
+.loading .icon::after {
+    content: "⟳";
+    animation: spin 1s linear infinite;
 }
 
 @keyframes pulse {
@@ -130,15 +87,12 @@
     100% { opacity: 1; }
 }
 
-/* Hover effects */
-.auth-item:hover {
-    background-color: #f3f2f1;
-    border-color: #d2d0ce;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
-/* Error state styling */
+/* Message styles */
 .error-message {
     color: #d13438;
     font-size: 14px;
@@ -147,9 +101,9 @@
     background-color: #fdf3f4;
     border: 1px solid #f1aeb5;
     border-radius: 4px;
+    animation: slideIn 0.3s ease;
 }
 
-/* Success state styling */
 .success-message {
     color: #107c10;
     font-size: 14px;
@@ -161,7 +115,6 @@
     animation: slideIn 0.3s ease;
 }
 
-/* Info message styling */
 .info-message {
     color: #0078d4;
     font-size: 14px;
@@ -173,7 +126,6 @@
     animation: slideIn 0.3s ease;
 }
 
-/* Message animations */
 @keyframes slideIn {
     from {
         opacity: 0;
@@ -185,7 +137,27 @@
     }
 }
 
-/* Loading state for auth items */
-.auth-item.loading {
-    opacity: 0.6;
+/* High contrast and accessibility support */
+@media (forced-colors: active) {
+    .auth-item {
+        border: 1px solid ButtonText;
+        background-color: ButtonFace;
+    }
+    
+    .icon.pass {
+        background-color: GrayText;
+        color: ButtonFace;
+    }
+    
+    .icon.fail {
+        background-color: GrayText;
+        color: ButtonFace;
+    }
+    
+    .auth-item:hover {
+        background-color: Highlight;
+        color: HighlightText;
+        box-shadow: none;
+        transform: none;
+    }
 }
