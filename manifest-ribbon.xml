@@ -5,12 +5,12 @@
            xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" 
            xsi:type="MailApp">
   
-  <Id>88888888-8888-8888-8888-888888888888</Id>
+  <Id>77777777-7777-7777-7777-777777777777</Id>
   <Version>1.0.0.0</Version>
   <ProviderName>TEST</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="RIBBON TEST"/>
-  <Description DefaultValue="TEST RIBBON BUTTON"/>
+  <DisplayName DefaultValue="Email Auth Checker"/>
+  <Description DefaultValue="Check SPF, DKIM, DMARC authentication"/>
   
   <Hosts>
     <Host Name="Mailbox"/>
@@ -80,11 +80,11 @@
         <bt:Image id="Icon80" DefaultValue="https://rdyy89.github.io/authopsy/assets/icon-80.png"/>
       </bt:Images>
       <bt:Urls>
-        <bt:Url id="TaskpaneUrl" DefaultValue="https://rdyy89.github.io/authopsy/debug.html"/>
+        <bt:Url id="TaskpaneUrl" DefaultValue="https://rdyy89.github.io/authopsy/"/>
       </bt:Urls>
       <bt:ShortStrings>
-        <bt:String id="GroupLabel" DefaultValue="TEST GROUP"/>
-        <bt:String id="ButtonLabel" DefaultValue="TEST BUTTON"/>
+        <bt:String id="GroupLabel" DefaultValue="Email Security"/>
+        <bt:String id="ButtonLabel" DefaultValue="Check Auth"/>
       </bt:ShortStrings>
       <bt:LongStrings>
         <bt:String id="ButtonTooltip" DefaultValue="Click this test button"/>
