@@ -32,7 +32,6 @@
       </TabletSettings>
       <PhoneSettings>
         <SourceLocation DefaultValue="https://raw.githubusercontent.com/rdyy89/authopsy/main/src/taskpane/taskpane.html"/>
-        <RequestedHeight>250</RequestedHeight>
       </PhoneSettings>
     </Form>
   </FormSettings>
