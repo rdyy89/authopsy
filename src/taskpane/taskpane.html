@@ -8,41 +8,24 @@
     <link rel="stylesheet" href="https://res.cdn.office.net/files/fabric-cdn-prod_20230815.002/office-ui-fabric-core/dist/css/fabric.min.css"/>
     <link rel="stylesheet" href="taskpane.css"/>
 </head>
-<body class="ms-Fabric" dir="ltr">
-    <div id="content">
-        <div class="ms-Grid" dir="ltr">
-            <div class="ms-Grid-row">
-                <div class="ms-Grid-col ms-sm6 ms-md8 ms-lg10">
-                    <h2 class="ms-font-xl">Authentication Results</h2>
-                    <p class="ms-fontSize-s ms-fontColor-neutralSecondary">Email security authentication status</p>
-                    <div id="status-indicator" class="info-message">Loading authentication results...</div>
-                </div>
+<body class="ms-Fabric inline-mode" dir="ltr">
+    <div id="content" class="inline-content">
+        <div class="auth-header">
+            <span class="auth-title">Email Authentication:</span>
+            <div id="status-indicator" class="inline-status">Loading...</div>
+        </div>
+        <div class="auth-inline-row">
+            <div id="dmarc" class="auth-item-inline">
+                <span class="icon"></span>
+                <span class="label-inline">DMARC</span>
             </div>
-            <div class="ms-Grid-row">
-                <div class="ms-Grid-col ms-sm6 ms-md8 ms-lg10">
-                    <div id="dmarc" class="auth-item">
-                        <span class="icon"></span>
-                        <span class="label">DMARC</span>
-                        <span class="description">Domain-based Message Authentication</span>
-                    </div>
-                    <div id="dkim" class="auth-item">
-                        <span class="icon"></span>
-                        <span class="label">DKIM</span>
-                        <span class="description">DomainKeys Identified Mail</span>
-                    </div>
-                    <div id="spf" class="auth-item">
-                        <span class="icon"></span>
-                        <span class="label">SPF</span>
-                        <span class="description">Sender Policy Framework</span>
-                    </div>
-                </div>
+            <div id="dkim" class="auth-item-inline">
+                <span class="icon"></span>
+                <span class="label-inline">DKIM</span>
             </div>
-            <div class="ms-Grid-row">
-                <div class="ms-Grid-col ms-sm6 ms-md8 ms-lg10">
-                    <p class="ms-fontSize-xs ms-fontColor-neutralTertiary">
-                        Authentication results are parsed from email headers
-                    </p>
-                </div>
+            <div id="spf" class="auth-item-inline">
+                <span class="icon"></span>
+                <span class="label-inline">SPF</span>
             </div>
         </div>
     </div>

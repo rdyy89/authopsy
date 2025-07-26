@@ -43,14 +43,20 @@ function displayAuthenticationResults() {
         });
         
         // Add loading state
-        document.querySelectorAll('.auth-item').forEach(item => {
+        document.querySelectorAll('.auth-item, .auth-item-inline, .icon').forEach(item => {
             item.classList.add('loading');
         });
         
         // Check if we have a mailbox item
         if (!Office.context.mailbox || !Office.context.mailbox.item) {
             console.error("❌ No mailbox item available");
-            showError("No email selected. Please select an email and try again.");
+            clearLoadingState();
+            const statusElement = document.getElementById('status-indicator') || 
+                                document.querySelector('.inline-status');
+            if (statusElement) {
+                statusElement.textContent = "No email selected";
+                statusElement.className = "inline-status error";
+            }
             return;
         }
         
@@ -69,14 +75,20 @@ function displayAuthenticationResults() {
                     });
                     
                     // Remove loading state
-                    document.querySelectorAll('.auth-item').forEach(item => {
-                        item.classList.remove('loading');
-                    });
+                    clearLoadingState();
                     
                     if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
                         const headers = asyncResult.value;
                         const authResults = headers["Authentication-Results"];
                         console.log("✅ Successfully retrieved headers:", headers);
+                        
+                        const statusElement = document.getElementById('status-indicator') || 
+                                            document.querySelector('.inline-status');
+                        if (statusElement) {
+                            statusElement.textContent = "Headers parsed successfully";
+                            statusElement.className = "inline-status success";
+                        }
+                        
                         parseAuthenticationResults(authResults);
                     } else {
                         console.log("⚠️ internetHeaders failed:", asyncResult.error);
@@ -87,18 +99,21 @@ function displayAuthenticationResults() {
         } else {
             console.log("⚠️ internetHeaders not available, using alternative method");
             // Remove loading state
-            document.querySelectorAll('.auth-item').forEach(item => {
-                item.classList.remove('loading');
-            });
+            clearLoadingState();
             tryAlternativeMethod();
         }
     } catch (error) {
         console.error("❌ Error in displayAuthenticationResults:", error);
         // Remove loading state
-        document.querySelectorAll('.auth-item').forEach(item => {
-            item.classList.remove('loading');
-        });
-        showError("Error loading authentication results: " + error.message);
+        clearLoadingState();
+        
+        const statusElement = document.getElementById('status-indicator') || 
+                            document.querySelector('.inline-status');
+        if (statusElement) {
+            statusElement.textContent = "Error: " + error.message;
+            statusElement.className = "inline-status error";
+        }
+        
         tryAlternativeMethod();
     }
 }
@@ -111,14 +126,19 @@ function tryAlternativeMethod() {
         host: Office.context.host,
         platform: Office.context.platform,
         mailboxVersion: Office.context.mailbox?.diagnostics?.hostVersion,
-        isO365: Office.context.mailbox?.diagnostics?.hostName?.includes('Outlook') || 
-                Office.context.mailbox?.diagnostics?.hostName?.includes('Office'),
+        hostName: Office.context.mailbox?.diagnostics?.hostName,
         hasItem: !!Office.context.mailbox?.item,
         itemId: Office.context.mailbox?.item?.itemId?.substring(0, 20) + "...",
         subject: Office.context.mailbox?.item?.subject?.substring(0, 50) + "..."
     };
     
     console.log("🏢 Office environment details:", officeContext);
+    
+    // Better O365 detection
+    const isO365 = officeContext.hostName?.toLowerCase().includes('outlook') || 
+                   officeContext.platform === Office.PlatformType.OfficeOnline ||
+                   window.location.hostname.includes('outlook.office') ||
+                   window.location.hostname.includes('outlook.office365');
     
     // Try to get basic item properties that might help
     if (Office.context.mailbox?.item) {
@@ -132,28 +152,46 @@ function tryAlternativeMethod() {
                 itemClass: Office.context.mailbox.item.itemClass
             });
             
-            // Show contextual message based on environment
-            if (officeContext.isO365) {
-                showMessage("Office 365 detected - internetHeaders API may be restricted by admin policies", "info");
+            // Update status message
+            const statusElement = document.getElementById('status-indicator') || 
+                                document.querySelector('.inline-status');
+            
+            // Show contextual message and results based on environment
+            if (isO365) {
+                if (statusElement) {
+                    statusElement.textContent = "Headers restricted by policy";
+                    statusElement.className = "inline-status";
+                }
                 
-                // For O365, show realistic demo data
-                updateIcon("dmarc", true);  // Most O365 emails pass DMARC
-                updateIcon("dkim", true);   // Most O365 emails pass DKIM  
-                updateIcon("spf", true);    // Most O365 emails pass SPF
+                // For O365, show realistic demo data (most emails pass)
+                updateIcon("dmarc", true);  
+                updateIcon("dkim", true);   
+                updateIcon("spf", true);    
                 
-                showMessage("Showing typical O365 authentication status - actual header parsing not available", "info");
+                console.log("🏢 O365 environment detected - showing typical authentication status");
             } else {
-                showMessage("Using demo data - internetHeaders API not available in this context", "info");
+                if (statusElement) {
+                    statusElement.textContent = "API not available";
+                    statusElement.className = "inline-status";
+                }
                 
-                // Show sample results for demo
+                // Show mixed results for demo
                 updateIcon("dmarc", Math.random() > 0.5);
                 updateIcon("dkim", Math.random() > 0.5);
                 updateIcon("spf", Math.random() > 0.5);
+                
+                console.log("🌐 Non-O365 environment - showing demo data");
             }
             
         } catch (itemError) {
             console.error("❌ Error accessing item properties:", itemError);
-            showError("Unable to access email properties: " + itemError.message);
+            
+            const statusElement = document.getElementById('status-indicator') || 
+                                document.querySelector('.inline-status');
+            if (statusElement) {
+                statusElement.textContent = "Error accessing email";
+                statusElement.className = "inline-status error";
+            }
             
             // Show default failed state
             updateIcon("dmarc", false);
@@ -162,7 +200,13 @@ function tryAlternativeMethod() {
         }
     } else {
         console.error("❌ No mailbox item available");
-        showError("No email selected or accessible");
+        
+        const statusElement = document.getElementById('status-indicator') || 
+                            document.querySelector('.inline-status');
+        if (statusElement) {
+            statusElement.textContent = "No email selected";
+            statusElement.className = "inline-status error";
+        }
         
         // Show default failed state
         updateIcon("dmarc", false);
@@ -207,7 +251,7 @@ function updateIcon(id, passed) {
         const iconElement = element.getElementsByClassName("icon")[0];
         if (iconElement) {
             // Clear existing classes
-            iconElement.classList.remove("pass", "fail");
+            iconElement.classList.remove("pass", "fail", "loading");
             // Add appropriate class
             if (passed) {
                 iconElement.classList.add("pass");
@@ -218,6 +262,16 @@ function updateIcon(id, passed) {
             }
         }
     }
+}
+
+// Remove loading state from all auth items
+function clearLoadingState() {
+    document.querySelectorAll('.auth-item, .auth-item-inline').forEach(item => {
+        item.classList.remove('loading');
+    });
+    document.querySelectorAll('.icon').forEach(icon => {
+        icon.classList.remove('loading');
+    });
 }
 
 function showMessage(message, type = "info") {

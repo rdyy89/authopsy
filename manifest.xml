@@ -24,11 +24,11 @@
     <Form xsi:type="ItemRead">
       <DesktopSettings>
         <SourceLocation DefaultValue="https://rdyy89.github.io/authopsy/src/taskpane/taskpane.html"/>
-        <RequestedHeight>250</RequestedHeight>
+        <RequestedHeight>120</RequestedHeight>
       </DesktopSettings>
       <TabletSettings>
         <SourceLocation DefaultValue="https://rdyy89.github.io/authopsy/src/taskpane/taskpane.html"/>
-        <RequestedHeight>250</RequestedHeight>
+        <RequestedHeight>120</RequestedHeight>
       </TabletSettings>
       <PhoneSettings>
         <SourceLocation DefaultValue="https://rdyy89.github.io/authopsy/src/taskpane/taskpane.html"/>
@@ -71,6 +71,14 @@
               </Group>
             </OfficeTab>
           </ExtensionPoint>
+          <!-- Add contextual add-in for inline display -->
+          <ExtensionPoint xsi:type="DetectedEntity">
+            <Label resid="ContextLabel"/>
+            <SourceLocation resid="Taskpane.Url"/>
+            <Rule xsi:type="RuleCollection" Mode="And">
+              <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read"/>
+            </Rule>
+          </ExtensionPoint>
         </DesktopFormFactor>
       </Host>
     </Hosts>
@@ -87,6 +95,7 @@
       <bt:ShortStrings>
         <bt:String id="GroupLabel" DefaultValue="Authopsy"/>
         <bt:String id="TaskpaneButton.Label" DefaultValue="Show Authopsy"/>
+        <bt:String id="ContextLabel" DefaultValue="Email Authentication"/>
       </bt:ShortStrings>
       <bt:LongStrings>
         <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Shows DMARC, DKIM, and SPF results for the selected email."/>

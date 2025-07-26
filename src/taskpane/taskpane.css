@@ -5,6 +5,110 @@
     font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica', sans-serif;
 }
 
+/* Inline mode styles for email view */
+.inline-mode {
+    background: #f8f9fa;
+    border-bottom: 1px solid #e1dfdd;
+}
+
+.inline-content {
+    padding: 8px 12px !important;
+    max-height: 60px;
+    overflow: hidden;
+}
+
+.auth-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.auth-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #323130;
+    margin-right: 8px;
+}
+
+.inline-status {
+    font-size: 11px;
+    color: #605e5c;
+    font-style: italic;
+}
+
+.auth-inline-row {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.auth-item-inline {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.label-inline {
+    font-size: 12px;
+    font-weight: 500;
+    color: #323130;
+    margin-left: 2px;
+}
+
+.icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    font-size: 10px;
+}
+
+.icon.pass {
+    background-color: #107c10;
+}
+
+.icon.pass::after {
+    content: "✓";
+}
+
+.icon.fail {
+    background-color: #d13438;
+}
+
+.icon.fail::after {
+    content: "✗";
+}
+
+/* Loading state for inline icons */
+.loading .icon {
+    background-color: #f3f2f1 !important;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.loading .icon::after {
+    content: "⟳";
+    animation: spin 1s linear infinite;
+    font-size: 8px;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Original styles for taskpane mode (fallback) */
 .auth-item {
     display: flex;
     align-items: center;
@@ -27,36 +131,6 @@
     opacity: 0.6;
 }
 
-.icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-    flex-shrink: 0;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: white;
-    font-size: 14px;
-}
-
-.icon.pass {
-    background-color: #107c10;
-}
-
-.icon.pass::after {
-    content: "✓";
-}
-
-.icon.fail {
-    background-color: #d13438;
-}
-
-.icon.fail::after {
-    content: "✗";
-}
-
 .label {
     font-weight: 600;
     min-width: 60px;
@@ -68,28 +142,6 @@
     font-size: 12px;
     color: #605e5c;
     flex-grow: 1;
-}
-
-/* Loading state */
-.loading .icon {
-    background-color: #f3f2f1 !important;
-    animation: pulse 1.5s ease-in-out infinite;
-}
-
-.loading .icon::after {
-    content: "⟳";
-    animation: spin 1s linear infinite;
-}
-
-@keyframes pulse {
-    0% { opacity: 1; }
-    50% { opacity: 0.5; }
-    100% { opacity: 1; }
-}
-
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
 }
 
 /* Message styles */
@@ -159,5 +211,10 @@
         color: HighlightText;
         box-shadow: none;
         transform: none;
+    }
+    
+    .inline-mode {
+        background: ButtonFace;
+        border-bottom: 1px solid ButtonText;
     }
 }
