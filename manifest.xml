@@ -53,79 +53,20 @@
             <OfficeTab id="TabDefault">
               <Group id="msgReadGroup">
                 <Label resid="GroupLabel"/>
-                <Control xsi:type="Menu" id="authDropdownMenu">
-                  <Label resid="MenuButton.Label"/>
+                <Control xsi:type="Button" id="msgReadOpenPaneButton">
+                  <Label resid="TaskpaneButton.Label"/>
                   <Supertip>
-                    <Title resid="MenuButton.Label"/>
-                    <Description resid="MenuButton.Tooltip"/>
+                    <Title resid="TaskpaneButton.Label"/>
+                    <Description resid="TaskpaneButton.Tooltip"/>
                   </Supertip>
                   <Icon>
                     <bt:Image size="16" resid="Icon.16x16"/>
                     <bt:Image size="32" resid="Icon.32x32"/>
                     <bt:Image size="80" resid="Icon.80x80"/>
                   </Icon>
-                  <Items>
-                    <Item id="authStatus">
-                      <Label resid="AuthStatus.Label"/>
-                      <Supertip>
-                        <Title resid="AuthStatus.Label"/>
-                        <Description resid="AuthStatus.Tooltip"/>
-                      </Supertip>
-                      <Icon>
-                        <bt:Image size="16" resid="Icon.16x16"/>
-                        <bt:Image size="32" resid="Icon.32x32"/>
-                        <bt:Image size="80" resid="Icon.80x80"/>
-                      </Icon>
-                      <Action xsi:type="ShowTaskpane">
-                        <SourceLocation resid="Taskpane.Url"/>
-                      </Action>
-                    </Item>
-                    <Item id="dmarcStatus">
-                      <Label resid="DmarcStatus.Label"/>
-                      <Supertip>
-                        <Title resid="DmarcStatus.Label"/>
-                        <Description resid="DmarcStatus.Tooltip"/>
-                      </Supertip>
-                      <Icon>
-                        <bt:Image size="16" resid="Icon.16x16"/>
-                        <bt:Image size="32" resid="Icon.32x32"/>
-                        <bt:Image size="80" resid="Icon.80x80"/>
-                      </Icon>
-                      <Action xsi:type="ExecuteFunction">
-                        <FunctionName>showDmarcDetails</FunctionName>
-                      </Action>
-                    </Item>
-                    <Item id="dkimStatus">
-                      <Label resid="DkimStatus.Label"/>
-                      <Supertip>
-                        <Title resid="DkimStatus.Label"/>
-                        <Description resid="DkimStatus.Tooltip"/>
-                      </Supertip>
-                      <Icon>
-                        <bt:Image size="16" resid="Icon.16x16"/>
-                        <bt:Image size="32" resid="Icon.32x32"/>
-                        <bt:Image size="80" resid="Icon.80x80"/>
-                      </Icon>
-                      <Action xsi:type="ExecuteFunction">
-                        <FunctionName>showDkimDetails</FunctionName>
-                      </Action>
-                    </Item>
-                    <Item id="spfStatus">
-                      <Label resid="SpfStatus.Label"/>
-                      <Supertip>
-                        <Title resid="SpfStatus.Label"/>
-                        <Description resid="SpfStatus.Tooltip"/>
-                      </Supertip>
-                      <Icon>
-                        <bt:Image size="16" resid="Icon.16x16"/>
-                        <bt:Image size="32" resid="Icon.32x32"/>
-                        <bt:Image size="80" resid="Icon.80x80"/>
-                      </Icon>
-                      <Action xsi:type="ExecuteFunction">
-                        <FunctionName>showSpfDetails</FunctionName>
-                      </Action>
-                    </Item>
-                  </Items>
+                  <Action xsi:type="ShowTaskpane">
+                    <SourceLocation resid="Taskpane.Url"/>
+                  </Action>
                 </Control>
               </Group>
             </OfficeTab>
@@ -145,18 +86,10 @@
       </bt:Urls>
       <bt:ShortStrings>
         <bt:String id="GroupLabel" DefaultValue="🔒 Email Security"/>
-        <bt:String id="MenuButton.Label" DefaultValue="🔐 Auth Status"/>
-        <bt:String id="AuthStatus.Label" DefaultValue="📊 Full Report"/>
-        <bt:String id="DmarcStatus.Label" DefaultValue="🛡️ DMARC: Checking..."/>
-        <bt:String id="DkimStatus.Label" DefaultValue="🔑 DKIM: Checking..."/>
-        <bt:String id="SpfStatus.Label" DefaultValue="📧 SPF: Checking..."/>
+        <bt:String id="TaskpaneButton.Label" DefaultValue="🔐 Auth Check"/>
       </bt:ShortStrings>
       <bt:LongStrings>
-        <bt:String id="MenuButton.Tooltip" DefaultValue="Check email authentication status - click to see individual results"/>
-        <bt:String id="AuthStatus.Tooltip" DefaultValue="View detailed authentication report"/>
-        <bt:String id="DmarcStatus.Tooltip" DefaultValue="DMARC authentication details"/>
-        <bt:String id="DkimStatus.Tooltip" DefaultValue="DKIM signature verification details"/>
-        <bt:String id="SpfStatus.Tooltip" DefaultValue="SPF sender verification details"/>
+        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Check email authentication: DMARC, DKIM, and SPF results"/>
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>
