@@ -1,0 +1,23 @@
+#content {
+    padding: 15px;
+}
+
+#dmarc, #dkim, #spf {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.icon.pass {
+    content: url('https://raw.githubusercontent.com/rdyy89/authopsy/main/authopsy-addin/assets/tick.png');
+}
+
+.icon.fail {
+    content: url('https://raw.githubusercontent.com/rdyy89/authopsy/main/authopsy-addin/assets/cross.png');
+}
