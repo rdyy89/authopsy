@@ -6,8 +6,8 @@
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="Authopsy"/>
   <Description DefaultValue="Displays DMARC, DKIM, and SPF results for the selected email."/>
-  <IconUrl DefaultValue="https://raw.githubusercontent.com/rdyy89/authopsy/main/authopsy-addin/assets/icon-80.png"/>
-  <HighResolutionIconUrl DefaultValue="https://raw.githubusercontent.com/rdyy89/authopsy/main/authopsy-addin/assets/icon-80.png"/>
+  <IconUrl DefaultValue="https://raw.githubusercontent.com/rdyy89/authopsy/main/assets/icon-80.png"/>
+  <HighResolutionIconUrl DefaultValue="https://raw.githubusercontent.com/rdyy89/authopsy/main/assets/icon-80.png"/>
   <SupportUrl DefaultValue="https://github.com/rdyy89/authopsy"/>
   <AppDomains>
     <AppDomain>https://raw.githubusercontent.com</AppDomain>
@@ -23,15 +23,15 @@
   <FormSettings>
     <Form xsi:type="ItemRead">
       <DesktopSettings>
-        <SourceLocation DefaultValue="https://raw.githubusercontent.com/rdyy89/authopsy/main/authopsy-addin/src/taskpane/taskpane.html"/>
+        <SourceLocation DefaultValue="https://raw.githubusercontent.com/rdyy89/authopsy/main/src/taskpane/taskpane.html"/>
         <RequestedHeight>250</RequestedHeight>
       </DesktopSettings>
       <TabletSettings>
-        <SourceLocation DefaultValue="https://raw.githubusercontent.com/rdyy89/authopsy/main/authopsy-addin/src/taskpane/taskpane.html"/>
+        <SourceLocation DefaultValue="https://raw.githubusercontent.com/rdyy89/authopsy/main/src/taskpane/taskpane.html"/>
         <RequestedHeight>250</RequestedHeight>
       </TabletSettings>
       <PhoneSettings>
-        <SourceLocation DefaultValue="https://raw.githubusercontent.com/rdyy89/authopsy/main/authopsy-addin/src/taskpane/taskpane.html"/>
+        <SourceLocation DefaultValue="https://raw.githubusercontent.com/rdyy89/authopsy/main/src/taskpane/taskpane.html"/>
         <RequestedHeight>250</RequestedHeight>
       </PhoneSettings>
     </Form>
@@ -77,13 +77,13 @@
     </Hosts>
     <Resources>
       <bt:Images>
-        <bt:Image id="Icon.16x16" DefaultValue="https://raw.githubusercontent.com/rdyy89/authopsy/main/authopsy-addin/assets/icon-16.png"/>
-        <bt:Image id="Icon.32x32" DefaultValue="https://raw.githubusercontent.com/rdyy89/authopsy/main/authopsy-addin/assets/icon-32.png"/>
-        <bt:Image id="Icon.80x80" DefaultValue="https://raw.githubusercontent.com/rdyy89/authopsy/main/authopsy-addin/assets/icon-80.png"/>
+        <bt:Image id="Icon.16x16" DefaultValue="https://raw.githubusercontent.com/rdyy89/authopsy/main/assets/icon-16.png"/>
+        <bt:Image id="Icon.32x32" DefaultValue="https://raw.githubusercontent.com/rdyy89/authopsy/main/assets/icon-32.png"/>
+        <bt:Image id="Icon.80x80" DefaultValue="https://raw.githubusercontent.com/rdyy89/authopsy/main/assets/icon-80.png"/>
       </bt:Images>
       <bt:Urls>
-        <bt:Url id="FunctionFile.Url" DefaultValue="https://raw.githubusercontent.com/rdyy89/authopsy/main/authopsy-addin/src/commands/commands.html"/>
-        <bt:Url id="Taskpane.Url" DefaultValue="https://raw.githubusercontent.com/rdyy89/authopsy/main/authopsy-addin/src/taskpane/taskpane.html"/>
+        <bt:Url id="FunctionFile.Url" DefaultValue="https://raw.githubusercontent.com/rdyy89/authopsy/main/src/commands/commands.html"/>
+        <bt:Url id="Taskpane.Url" DefaultValue="https://raw.githubusercontent.com/rdyy89/authopsy/main/src/taskpane/taskpane.html"/>
       </bt:Urls>
       <bt:ShortStrings>
         <bt:String id="GroupLabel" DefaultValue="Authopsy"/>
