@@ -79,9 +79,29 @@
     height: 20px;
     margin-right: 10px;
     flex-shrink: 0;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    font-size: 12px;
+}
+
+.icon.pass {
+    background-color: #107c10;
+}
+
+.icon.pass::after {
+    content: "✓";
+}
+
+.icon.fail {
+    background-color: #d13438;
+}
+
+.icon.fail::after {
+    content: "✗";
 }
 
 .label {
@@ -95,14 +115,6 @@
     font-size: 12px;
     color: #605e5c;
     flex-grow: 1;
-}
-
-.icon.pass {
-    background-image: url('https://raw.githubusercontent.com/rdyy89/authopsy/main/assets/tick.png');
-}
-
-.icon.fail {
-    background-image: url('https://raw.githubusercontent.com/rdyy89/authopsy/main/assets/cross.png');
 }
 
 /* Loading state */
