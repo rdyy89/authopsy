@@ -1,0 +1,2 @@
+Office.onReady(function () {
+});
