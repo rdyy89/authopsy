@@ -17,7 +17,7 @@
   </Hosts>
   <Requirements>
     <Sets>
-      <Set Name="Mailbox" MinVersion="1.7"/>
+      <Set Name="Mailbox" MinVersion="1.1"/>
     </Sets>
   </Requirements>
   <FormSettings>
@@ -41,7 +41,7 @@
   </Rule>
   <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="VersionOverridesV1_0">
     <Requirements>
-      <bt:Sets DefaultMinVersion="1.7">
+      <bt:Sets DefaultMinVersion="1.1">
         <bt:Set Name="Mailbox"/>
       </bt:Sets>
     </Requirements>
@@ -49,12 +49,6 @@
       <Host xsi:type="MailHost">
         <DesktopFormFactor>
           <FunctionFile resid="FunctionFile.Url"/>
-          <ExtensionPoint xsi:type="LaunchEvent">
-            <LaunchEvents>
-              <LaunchEvent Type="OnMessageRead" FunctionName="onMessageRead"/>
-            </LaunchEvents>
-            <SourceLocation resid="FunctionFile.Url"/>
-          </ExtensionPoint>
           <ExtensionPoint xsi:type="MessageReadCommandSurface">
             <OfficeTab id="TabDefault">
               <Group id="msgReadGroup">
