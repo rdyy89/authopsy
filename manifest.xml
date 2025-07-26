@@ -49,27 +49,12 @@
       <Host xsi:type="MailHost">
         <DesktopFormFactor>
           <FunctionFile resid="FunctionFile.Url"/>
-          <ExtensionPoint xsi:type="MessageReadCommandSurface">
-            <OfficeTab id="TabDefault">
-              <Group id="msgReadGroup">
-                <Label resid="GroupLabel"/>
-                <Control xsi:type="Button" id="msgReadOpenPaneButton">
-                  <Label resid="TaskpaneButton.Label"/>
-                  <Supertip>
-                    <Title resid="TaskpaneButton.Label"/>
-                    <Description resid="TaskpaneButton.Tooltip"/>
-                  </Supertip>
-                  <Icon>
-                    <bt:Image size="16" resid="Icon.16x16"/>
-                    <bt:Image size="32" resid="Icon.32x32"/>
-                    <bt:Image size="80" resid="Icon.80x80"/>
-                  </Icon>
-                  <Action xsi:type="ShowTaskpane">
-                    <SourceLocation resid="Taskpane.Url"/>
-                  </Action>
-                </Control>
-              </Group>
-            </OfficeTab>
+          <ExtensionPoint xsi:type="DetectedEntity">
+            <Label resid="EntityLabel"/>
+            <SourceLocation resid="DetectedEntityUrl"/>
+            <Rule xsi:type="RuleCollection" Mode="And">
+              <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read"/>
+            </Rule>
           </ExtensionPoint>
         </DesktopFormFactor>
       </Host>
@@ -82,15 +67,11 @@
       </bt:Images>
       <bt:Urls>
         <bt:Url id="FunctionFile.Url" DefaultValue="https://rdyy89.github.io/authopsy/src/commands/commands.html"/>
-        <bt:Url id="Taskpane.Url" DefaultValue="https://rdyy89.github.io/authopsy/src/taskpane/taskpane.html"/>
+        <bt:Url id="DetectedEntityUrl" DefaultValue="https://rdyy89.github.io/authopsy/src/taskpane/taskpane.html"/>
       </bt:Urls>
       <bt:ShortStrings>
-        <bt:String id="GroupLabel" DefaultValue="Authopsy"/>
-        <bt:String id="TaskpaneButton.Label" DefaultValue="Show Authopsy"/>
+        <bt:String id="EntityLabel" DefaultValue="Email Authentication"/>
       </bt:ShortStrings>
-      <bt:LongStrings>
-        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Shows DMARC, DKIM, and SPF results for the selected email."/>
-      </bt:LongStrings>
     </Resources>
   </VersionOverrides>
 </OfficeApp>
