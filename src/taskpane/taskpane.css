@@ -55,46 +55,34 @@
     margin-left: 2px;
 }
 
-.icon {
+.icon-text {
     width: 16px;
     height: 16px;
     margin-right: 4px;
-    flex-shrink: 0;
-    border-radius: 50%;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    color: white;
     font-size: 10px;
+    border-radius: 50%;
+    background-color: #e1dfdd;
+    color: #605e5c;
+    flex-shrink: 0;
 }
 
-.icon.pass {
+.icon-text.pass {
     background-color: #107c10;
+    color: white;
 }
 
-.icon.pass::after {
-    content: "✓";
-}
-
-.icon.fail {
+.icon-text.fail {
     background-color: #d13438;
+    color: white;
 }
 
-.icon.fail::after {
-    content: "✗";
-}
-
-/* Loading state for inline icons */
-.loading .icon {
-    background-color: #f3f2f1 !important;
+.icon-text.loading {
+    background-color: #f3f2f1;
     animation: pulse 1.5s ease-in-out infinite;
-}
-
-.loading .icon::after {
-    content: "⟳";
-    animation: spin 1s linear infinite;
-    font-size: 8px;
 }
 
 @keyframes pulse {

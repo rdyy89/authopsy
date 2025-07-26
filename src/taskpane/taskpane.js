@@ -246,21 +246,22 @@ function parseAuthenticationResults(authResults) {
 }
 
 function updateIcon(id, passed) {
-    const element = document.getElementById(id);
-    if (element) {
-        const iconElement = element.getElementsByClassName("icon")[0];
-        if (iconElement) {
-            // Clear existing classes
-            iconElement.classList.remove("pass", "fail", "loading");
-            // Add appropriate class
-            if (passed) {
-                iconElement.classList.add("pass");
-                console.log(`✅ ${id}: PASS`);
-            } else {
-                iconElement.classList.add("fail");
-                console.log(`❌ ${id}: FAIL`);
-            }
+    const iconElement = document.getElementById(id + '-icon');
+    if (iconElement) {
+        // Clear existing classes
+        iconElement.classList.remove("pass", "fail", "loading");
+        // Add appropriate class and text
+        if (passed) {
+            iconElement.classList.add("pass");
+            iconElement.textContent = "✓";
+            console.log(`✅ ${id}: PASS`);
+        } else {
+            iconElement.classList.add("fail");
+            iconElement.textContent = "✗";
+            console.log(`❌ ${id}: FAIL`);
         }
+    } else {
+        console.warn(`⚠️ Icon element not found for ${id}`);
     }
 }
 
@@ -269,8 +270,11 @@ function clearLoadingState() {
     document.querySelectorAll('.auth-item, .auth-item-inline').forEach(item => {
         item.classList.remove('loading');
     });
-    document.querySelectorAll('.icon').forEach(icon => {
+    document.querySelectorAll('.icon-text').forEach(icon => {
         icon.classList.remove('loading');
+        if (icon.textContent === '⟳') {
+            icon.textContent = '?';
+        }
     });
 }
 
