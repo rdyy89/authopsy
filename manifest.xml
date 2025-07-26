@@ -48,6 +48,7 @@
     <Hosts>
       <Host xsi:type="MailHost">
         <DesktopFormFactor>
+          <FunctionFile resid="FunctionFile.Url"/>
           <ExtensionPoint xsi:type="MessageReadCommandSurface">
             <OfficeTab id="TabDefault">
               <Group id="msgReadGroup">
@@ -80,6 +81,7 @@
         <bt:Image id="Icon.80x80" DefaultValue="https://rdyy89.github.io/authopsy/assets/tick.png"/>
       </bt:Images>
       <bt:Urls>
+        <bt:Url id="FunctionFile.Url" DefaultValue="https://rdyy89.github.io/authopsy/src/commands/commands.html"/>
         <bt:Url id="Taskpane.Url" DefaultValue="https://rdyy89.github.io/authopsy/src/taskpane/taskpane.html"/>
       </bt:Urls>
       <bt:ShortStrings>
