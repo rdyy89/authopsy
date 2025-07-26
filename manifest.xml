@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:mailapp="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="MailApp">
-  <Id>a75e7435-0168-4199-8475-9e763c1c3b5f</Id>
+  <Id>f8c59154-c901-416d-8a5a-d2d44b1e32b7</Id>
   <Version>1.0.0.0</Version>
   <ProviderName>Authopsy</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
