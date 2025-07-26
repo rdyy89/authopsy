@@ -23,15 +23,15 @@
   <FormSettings>
     <Form xsi:type="ItemRead">
       <DesktopSettings>
-        <SourceLocation DefaultValue="https://rdyy89.github.io/authopsy/src/taskpane/taskpane.html"/>
+        <SourceLocation DefaultValue="https://rdyy89.github.io/authopsy/test-inline.html"/>
         <RequestedHeight>80</RequestedHeight>
       </DesktopSettings>
       <TabletSettings>
-        <SourceLocation DefaultValue="https://rdyy89.github.io/authopsy/src/taskpane/taskpane.html"/>
+        <SourceLocation DefaultValue="https://rdyy89.github.io/authopsy/test-inline.html"/>
         <RequestedHeight>80</RequestedHeight>
       </TabletSettings>
       <PhoneSettings>
-        <SourceLocation DefaultValue="https://rdyy89.github.io/authopsy/src/taskpane/taskpane.html"/>
+        <SourceLocation DefaultValue="https://rdyy89.github.io/authopsy/test-inline.html"/>
       </PhoneSettings>
     </Form>
   </FormSettings>
