@@ -20,6 +20,21 @@
       <Set Name="Mailbox" MinVersion="1.10"/>
     </Sets>
   </Requirements>
+  <FormSettings>
+    <Form xsi:type="ItemRead">
+      <DesktopSettings>
+        <SourceLocation DefaultValue="https://rdyy89.github.io/authopsy/src/taskpane/taskpane.html"/>
+        <RequestedHeight>80</RequestedHeight>
+      </DesktopSettings>
+      <TabletSettings>
+        <SourceLocation DefaultValue="https://rdyy89.github.io/authopsy/src/taskpane/taskpane.html"/>
+        <RequestedHeight>80</RequestedHeight>
+      </TabletSettings>
+      <PhoneSettings>
+        <SourceLocation DefaultValue="https://rdyy89.github.io/authopsy/src/taskpane/taskpane.html"/>
+      </PhoneSettings>
+    </Form>
+  </FormSettings>
   <Permissions>ReadItem</Permissions>
   <Rule xsi:type="RuleCollection" Mode="Or">
     <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read"/>
